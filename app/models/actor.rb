@@ -11,9 +11,9 @@ class Actor < ActiveRecord::Base
   def list_roles
     # build a method on actor that will return a string in the form of
     # character name - show name
-    Character.where(actor_id: id).map do |c|
-      "#{c.name} - #{Show.find_by(c.show_id).name}"
-    end.join(", ")
+    self.characters.map do |character|
+      "#{character.name} - #{character.show.name}"
+    end.join
   end
 
 end
